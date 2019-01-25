@@ -1,0 +1,24 @@
+Personnel number | name                     | date of birth | Lab code | lab name | research code | research description | research supervisor
+unique           |one or more projects      |               |1 per lab |          |1 per project  |                      | 1 per project
+
+UNF: project(PersNo,name,DoB,labCode,labName,resCode,resDesc,resSuper)
+--> not normalized, so put everything into one big table
+
+1NF: project(resCode,resDesc,resSuper)
+     personnel(persNo,name,DoB,resCode,labCode,labName)
+--> create different tables for the different types of information (project information and personnel information). Minimize the repeating fields.
+
+2NF: personnel(persNo,labCode,resCode)
+     project(resCode,resDesc,resSuper)
+     lab(labCode,labName)
+     student(persNo,Name,DoB)
+                KEY: personnel(persNo and Labcode)
+                     project(rescode)
+                     lab(labCode)
+                     student(persNo)
+                     
+ --> eliminate partial dependency. All non-prime attributes must be dependent on the entire prime attribute. Create a seperate table for the attributes with partial depenency
+
+3NF: 2NF
+
+--> eliminate transient dependency: no non-prime attribute may be dependent on another non-prime attribute instead of the key. No transient dependency here, so 3NF = 2NF
