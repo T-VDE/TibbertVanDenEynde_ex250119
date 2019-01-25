@@ -1,0 +1,20 @@
+EX 8
+
+
+
+
+EX 9
+
+399
+
+db.getCollection('exam250119').count({percentage_of_side_effects:{$gt:8.0}})
+
+EX 10
+
+db.getCollection('exam250119').aggregate([{$group:{_id: "$company", totPerc:{$avg:"$percentage_of_side_effects"}}},{$match:{totPerc:{$gt:10}}}])
+
+Galderma Laboratories, L.P.
+Watson Pharmaceuticals, Inc.
+Durata Therapeutics, Inc.
+
+EX 11
