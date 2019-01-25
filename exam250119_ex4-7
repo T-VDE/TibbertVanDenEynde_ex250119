@@ -1,0 +1,36 @@
+EX 4
+
+select gene_name, (seq_region_end - seq_region_start)as length from gene order by length asc limit 1;
+
+TRDD1
+length: 7
+
+EX 5
+
+select gene_name, count(transcript_id)as nr_of_transcripts from gene g join transcript t on g.gene_id = t.gene_id group by g.gene_id order by nr_of_transcripts desc limit 1;
+
+NDRG2
+80 transcripts
+
+EX 6
+
+select chromosome, count(gene_id)as nr_of_genes from gene where description like "% cancer %" group by chromosome order by nr_of_genes desc limit 1 offset 1;
+
+chromosome 1
+
+select chromosome, count(exon_id) as nr_of_exons from gene g join transcript t on g.gene_id = t.gene_id join exon_transcript et on t.transcript_id = et.transcript_id where chromosome = 1 group by chromosome limit 1;
+
+117546 exons
+
+EX 7
+
+select count(*)as nr_of_rows from exon;
+
+642590
+
+select count(*)as nr_of_rows from exon_transcript;
+
+1178393
+
+There are multiple exons per transcript and/or vice versa, and all these combinations are stored in the exon_transcript table, whereas the exon table only contains a list of every exon, without any duplicates.
+
