@@ -1,0 +1,7 @@
+EX 12
+
+
+
+EX 13
+
+curl 'http://rest.ensembl.org/sequence/region/zebrafish/20:33294428..33294527:1'-H'content-type:text/plain'
